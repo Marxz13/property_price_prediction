@@ -4,8 +4,8 @@ Feature engineering utilities for property valuation.
 import re
 from typing import Dict, List, Tuple
 
-from property_types import PropertyTypeMappings
-from geo_utils import GeoSpatialUtils
+from app.models.property_types import PropertyTypeMappings
+from app.models.geo_utils import GeoSpatialUtils
 
 
 class FeatureEngineer:

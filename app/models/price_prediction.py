@@ -5,9 +5,9 @@ import numpy as np
 import pandas as pd
 from typing import Dict, List, Tuple, Any
 
-from property_types import PropertyTypeClassifier
-from geo_utils import GeoSpatialUtils
-from feature_engineering import FeatureEngineer
+from app.models.property_types import PropertyTypeClassifier
+from app.models.geo_utils import GeoSpatialUtils
+from app.models.feature_engineering import FeatureEngineer
 from app.exceptions import PredictionError, InvalidPropertyTypeError
 
 

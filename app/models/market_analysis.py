@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime
 from typing import Dict, List, Tuple, Any, Optional
 
-from property_types import PropertyTypeClassifier, PropertyTypeMappings
+from app.models.property_types import PropertyTypeClassifier, PropertyTypeMappings
 from config import config
 
 

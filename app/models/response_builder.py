@@ -6,9 +6,9 @@ from typing import Dict, List, Tuple, Any, Optional
 import pandas as pd
 from datetime import datetime
 
-from property_types import PropertyTypeClassifier
-from price_prediction import PricePredictor
-from market_analysis import MarketAnalyzer
+from app.models.property_types import PropertyTypeClassifier
+from app.models.price_prediction import PricePredictor
+from app.models.market_analysis import MarketAnalyzer
 
 
 class PropertyComparator:
