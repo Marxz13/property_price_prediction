@@ -181,12 +181,10 @@ class PropertyTypeClassifier:
         Returns:
             int: Property category code (1-11) or None if not found
         """
-        # Get property type string
         property_str = PropertyTypeClassifier.get_property_string_from_code(input_data)
         if property_str is None:
             return None
 
-        # Look up the category in the mapping
         return PropertyTypeMappings.CATEGORY_MAP.get(property_str.lower())
 
     @staticmethod
@@ -201,54 +199,6 @@ class PropertyTypeClassifier:
             int: 1 if landed, 0 if not
         """
         property_type = input_data.get("propertyType$1")
-        # "0" is for landed properties in the code
+        # "0" is for landed properties
         return 1 if property_type == "0" else 0
 
-
-def parse_floor_value(floor_value: any, default: int = 1) -> int:
-    """
-    Parse floor values with special handling for real estate conventions.
-
-    Args:
-        floor_value: The floor value (could be string, float, int, or NaN)
-        default: Default value to return if parsing fails
-
-    Returns:
-        int: Parsed floor number
-
-    Examples:
-        - "g" or "ground" → 1 (ground floor)
-        - "0" → 1 (ground floor)
-        - "3a" → 4 (3rd floor with annex, counts as 4)
-        - "43a" → 44 (43rd floor with annex)
-    """
-    import pandas as pd
-    import re
-
-    # Handle NaN and None
-    if pd.isna(floor_value) or floor_value is None:
-        return default
-
-    # Convert to string to handle different input types
-    floor_str = str(floor_value).lower().strip()
-
-    # Handle empty string
-    if not floor_str:
-        return default
-
-    # Handle ground floor designation
-    if floor_str in ('g', 'ground', '0'):
-        return 1
-
-    # Extract numeric part
-    numeric_match = re.search(r'(\d+)', floor_str)
-    if not numeric_match:
-        return default
-
-    base_floor = int(numeric_match.group(1))
-
-    # Check for annex designation (like "3a") and add 1
-    if 'a' in floor_str:
-        return base_floor + 1
-
-    return base_floor

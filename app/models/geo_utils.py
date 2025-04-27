@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 from app.exceptions import InvalidLocationError
-from config import config
+from app.config import config
 
 
 class GeoSpatialUtils:

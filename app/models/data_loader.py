@@ -59,8 +59,8 @@ class DataLoader:
             highrise_model = self.load_model('highrise_model.pkl')
 
             return {
-                "0": landed_model,  # Landed properties
-                "1": highrise_model  # Highrise properties
+                "0": landed_model,
+                "1": highrise_model
             }
         except Exception as e:
             raise ModelLoadError(f"Failed to load models: {e}")
