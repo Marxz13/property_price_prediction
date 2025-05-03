@@ -14,7 +14,7 @@ class Config:
         """Initialize configuration with environment variables."""
         load_dotenv()
         self.mongodb_uri = os.environ.get("MONGODB_URI")
-        self.numeric_precision = 3  # Decimal places for coordinate truncation
+        self.numeric_precision = 3
 
     def get_mongodb_client(self) -> MongoClient:
         """

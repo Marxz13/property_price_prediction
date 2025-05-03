@@ -81,10 +81,9 @@ class GeoSpatialUtils:
         """
         try:
             lat, lon = GeoSpatialUtils.get_coordinates(input_data)
-            precision = 10 ** config.numeric_precision
 
-            formatted_lat = int(float(lat) * precision) / precision
-            formatted_lon = int(float(lon) * precision) / precision
+            formatted_lat = float(f"{lat:.3f}")
+            formatted_lon = float(f"{lon:.3f}")
 
             return {
                 "formatted_Latitude": formatted_lat,

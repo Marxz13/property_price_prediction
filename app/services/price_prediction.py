@@ -34,10 +34,25 @@ def predict_property_price(input_data: Dict, models: Dict[str, Any],
 
         rounded_price = PricePredictor.round_cents_to_thousand(int(predicted_price * 100))
 
+        reports_data = None
+        try:
+            from app.models.market_analysis import MarketAnalyzer
+            market_analyzer = MarketAnalyzer()
+            reports_data = market_analyzer.get_reports_data()
+        except Exception as e:
+            current_app.logger.warning(f"Could not load reports data for confidence calculation: {e}")
+
+        # Calculate dynamic confidence score
+        confidence_score = price_predictor.calculate_confidence_score(
+            input_data=input_data,
+            predicted_price=predicted_price,
+            reports_data=reports_data
+        )
+
         result = {
             "predicted_price": rounded_price,
             "predicted_price_raw": int(predicted_price * 100),
-            "confidence_score": 0.85,
+            "confidence_score": confidence_score,
             "prediction_date": pd.Timestamp.now().isoformat()
         }
 
@@ -46,10 +61,10 @@ def predict_property_price(input_data: Dict, models: Dict[str, Any],
             result["property_type_encoded"] = property_type_encoded
 
         try:
-            lat, lon = GeoSpatialUtils.get_coordinates(input_data)
+            formatted_coords = GeoSpatialUtils.format_coordinates(input_data)
             result["coordinates"] = {
-                "latitude": lat,
-                "longitude": lon
+                "latitude": formatted_coords["formatted_Latitude"],
+                "longitude": formatted_coords["formatted_Longitude"]
             }
         except Exception:
             pass

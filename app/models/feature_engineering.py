@@ -50,10 +50,15 @@ class FeatureEngineer:
         # Select key POI features to include
         poi_features = {
             'n_landmarks_within_3km': metrics['n_landmarks_within_3km'],
+            'n_landmarks_within_5km': metrics['n_landmarks_within_5km'],
+            'n_landmarks_within_10km': metrics['n_landmarks_within_10km'],
+            'distance_to_nearest_landmark': metrics['distance_to_nearest_landmark'],
             '1.5_km_within_mrt': metrics['1.5_km_within_mrt'],
-            'n_malls_within_3km': metrics['n_malls_within_3km'],
             '3_km_within_mrt': metrics['3_km_within_mrt'],
-            '5_km_within_mrt': metrics['5_km_within_mrt']
+            '5_km_within_mrt': metrics['5_km_within_mrt'],
+            'distance_to_nearest_mall': metrics['distance_to_nearest_mall'],
+            'n_malls_within_3km': metrics['n_malls_within_3km'],
+            'n_malls_within_5km': metrics['n_malls_within_5km']
         }
 
         input_data.update(poi_features)

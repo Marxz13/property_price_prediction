@@ -26,7 +26,8 @@ class MarketAnalyzer:
         Returns:
             DataFrame: Property data
         """
-        collection = self.db_client["reports"]
+        db = self.db_client["property_database"]
+        collection = db["properties"]
         cursor = collection.find().limit(limit)
         return pd.DataFrame(list(cursor))
 
