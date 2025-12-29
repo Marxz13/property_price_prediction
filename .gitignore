@@ -24,6 +24,12 @@ dist/
 .next/
 out/
 
+# Python virtual environment
+venv/
+env/
+ENV/
+.venv
+
 # Logs
 logs/
 *.log
