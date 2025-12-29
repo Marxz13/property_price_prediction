@@ -13,6 +13,7 @@ yarn.lock
 # IDE and editor files
 .vscode/
 .idea/
+.qodo/
 *.swp
 *.swo
 *~
@@ -23,12 +24,16 @@ build/
 dist/
 .next/
 out/
+.vite/
 
 # Python virtual environment
 venv/
 env/
 ENV/
 .venv
+__pycache__/
+*.pyc
+instance/
 
 # Logs
 logs/
